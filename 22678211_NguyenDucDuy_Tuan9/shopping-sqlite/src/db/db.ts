@@ -23,7 +23,7 @@ export const initDb = () => {
 
     -- Đơn hàng
     CREATE TABLE IF NOT EXISTS orders (
-      order_id TEXT PRIMARY KEY,
+      order_id INTEGER PRIMARY KEY AUTOINCREMENT,
       order_date TEXT NOT NULL,
       total REAL NOT NULL CHECK(total >= 0)
     );
@@ -31,9 +31,9 @@ export const initDb = () => {
     -- Chi tiết đơn hàng
     CREATE TABLE IF NOT EXISTS order_items (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      order_id TEXT NOT NULL,
+      order_id INTEGER NOT NULL,
       product_id TEXT NOT NULL,
-      quantity INTEGER NOT NULL CHECK(quantity > 0),
+      qty INTEGER NOT NULL CHECK(qty > 0),
       price REAL NOT NULL CHECK(price >= 0),
       FOREIGN KEY (order_id) REFERENCES orders (order_id) ON DELETE CASCADE,
       FOREIGN KEY (product_id) REFERENCES products (product_id)

@@ -61,6 +61,9 @@ export default function ProductsScreen() {
                 ListFooterComponent={
                     <View style={styles.cartButtonWrapper}>
                         <Button title="Xem giỏ hàng" onPress={() => router.push('/cart')} />
+                        <View style={{ marginTop: 10 }}>
+                            <Button title="📋 Lịch sử hóa đơn" onPress={() => router.push('/history')} color="#28a745" />
+                        </View>
                     </View>
                 }
             />

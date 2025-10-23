@@ -26,3 +26,32 @@ export const checkout = async () => {
   await clearCart();
   return true;
 };
+
+// Lấy danh sách tất cả đơn hàng
+export const getAllOrders = async () => {
+  const orders = await db.getAllAsync<{
+    order_id: number;
+    order_date: string;
+    total: number;
+  }>('SELECT * FROM orders ORDER BY order_date DESC');
+  return orders;
+};
+
+// Lấy chi tiết đơn hàng theo order_id
+export const getOrderDetails = async (orderId: number) => {
+  const items = await db.getAllAsync<{
+    id: number;
+    order_id: number;
+    product_id: string;
+    qty: number;
+    price: number;
+    name: string;
+  }>(
+    `SELECT oi.*, p.name 
+     FROM order_items oi
+     JOIN products p ON oi.product_id = p.product_id
+     WHERE oi.order_id = ?`,
+    [orderId]
+  );
+  return items;
+};

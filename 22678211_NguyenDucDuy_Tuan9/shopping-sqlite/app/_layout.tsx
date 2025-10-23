@@ -10,6 +10,7 @@ export default function Layout() {
       <Stack.Screen name="index" options={{ title: 'Sản phẩm' }} />
       <Stack.Screen name="cart" options={{ title: 'Giỏ hàng' }} />
       <Stack.Screen name="invoice" options={{ title: 'Hóa đơn' }} />
+      <Stack.Screen name="history" options={{ title: 'Lịch sử hóa đơn' }} />
     </Stack>
   );
 }
